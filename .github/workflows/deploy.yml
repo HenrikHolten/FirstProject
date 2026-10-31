@@ -3,7 +3,7 @@ name: Deploy to One.com
 on:
   push:
     branches:
-      - master  # Bruger repoets standard branch
+      - master  # (Skriv 'master', hvis det er det dit repo bruger)
 
 jobs:
   web-deploy:
@@ -19,9 +19,11 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /www/GitTest/  # Eller den mappe du vil bruge
-
-          exclude: |
-            **/.git/**
-            **/.github/**
-            README.md
+          server-dir: /www/GitTest/
+          protocol: sftp
+          port: 22
+          
+          exclude:
+            - "**/.git/**"
+            - "**/.github/**"
+            - "README.md"
