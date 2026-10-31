@@ -21,8 +21,8 @@ jobs:
           lftp -c "
           set sftp:auto-confirm yes
           open -u '${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }}' sftp://${{ secrets.FTP_SERVER }}:22
-          mkdir -p /www/GitTest/
-          cd /www/GitTest/
+          mkdir -p /webroots/www/GitTest/
+          cd /webroots/www/GitTest/
           mirror -R --reverse --delete --verbose \
             --exclude-glob .git* \
             --exclude-glob .github* \
