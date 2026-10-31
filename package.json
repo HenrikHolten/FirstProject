@@ -1,0 +1,24 @@
+{
+  "name": "firstproject",
+  "version": "1.0.0",
+  "description": "Dette er den første test med et projekt på github",
+  "main": "app.js",
+  "scripts": {
+  "test": "jest"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HenrikHolten/FirstProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/HenrikHolten/FirstProject/issues"
+  },
+  "homepage": "https://github.com/HenrikHolten/FirstProject#readme",
+  "devDependencies": {
+    "jest": "^30.5.2"
+  }
+}

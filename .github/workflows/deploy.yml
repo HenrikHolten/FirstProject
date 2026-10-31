@@ -1,4 +1,4 @@
-name: Deploy to One.com
+name: Deploy to One.com med Test
 
 on:
   push:
@@ -6,17 +6,27 @@ on:
       - master
 
 jobs:
-  web-deploy:
-    name: Run Deploy
+  test-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Get latest code
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run automated tests
+        run: npm test
+
       - name: Install lftp
         run: sudo apt-get update && sudo apt-get install -y lftp
 
-      - name: Upload via SFTP (lftp)
+      - name: Upload via SFTP (lftp) if tests passed
         run: |
           lftp -c "
           set sftp:auto-confirm yes
@@ -26,6 +36,9 @@ jobs:
           mirror -R --reverse --delete --verbose \
             --exclude-glob .git* \
             --exclude-glob .github* \
+            --exclude node_modules* \
+            --exclude package*.json \
+            --exclude *.test.js \
             --exclude README.md \
             ./ ./
           bye
