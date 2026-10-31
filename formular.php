@@ -1,10 +1,8 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 // Database forbindelsesdetaljer
 $host = 'localhost';
 $user = 'c7l4mz4rc_himandher_dk';
-$pass = 'Vector01'; // Skift til dit rigtige password
+$pass = 'Vector01'; 
 $db   = 'c7l4mz4rc_himandher_dk';
 
 $meddelelse = "";
@@ -42,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>Min Formular</title>
+    <title>Skriv en besked</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 40px; }
         form { max-width: 400px; display: flex; flex-direction: column; gap: 15px; }

@@ -2,7 +2,7 @@
 // Database forbindelsesdetaljer
 $host = 'localhost';
 $user = 'c7l4mz4rc_himandher_dk';
-$pass = 'DIT_FAKTISKE_PASSWORD'; // Skift til dit rigtige password
+$pass = 'Vector01'; // Skift til dit rigtige password
 $db   = 'c7l4mz4rc_himandher_dk';
 
 $beskeder = [];
