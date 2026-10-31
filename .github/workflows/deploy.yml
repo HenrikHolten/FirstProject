@@ -19,11 +19,14 @@ jobs:
       - name: Upload via SFTP (lftp)
         run: |
           lftp -c "
+          set sftp:auto-confirm yes
           open -u '${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }}' sftp://${{ secrets.FTP_SERVER }}:22
+          mkdir -p /www/GitTest/
+          cd /www/GitTest/
           mirror -R --reverse --delete --verbose \
             --exclude-glob .git* \
             --exclude-glob .github* \
             --exclude README.md \
-            ./ /www/GitTest/
+            ./ ./
           bye
           "
