@@ -1,7 +1,7 @@
 <?php
 $host = 'localhost';
 $user = 'c7l4mz4rc_himandher_dk';
-$pass = getenv('DB_PASSWORD') ?: 'DIN_LOKALE_ADGANGSKODE';
+$pass = 'Vector01';
 $db   = 'c7l4mz4rc_himandher_dk';
 
 $con = mysqli_connect($host, $user, $pass, $db);
