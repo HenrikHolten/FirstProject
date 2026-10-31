@@ -33,11 +33,12 @@ jobs:
           open -u '${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }}' sftp://${{ secrets.FTP_SERVER }}:22
           cd /webroots/www/GitTest/ || exit 1
           mirror -R --reverse --delete --verbose \
+            --xfer-all \
             --exclude .git/ \
             --exclude .github/ \
             --exclude node_modules/ \
             --exclude package*.json \
-            --exclude *.test.js \
+            --exclude app.test.js \
             --exclude README.md \
             ./ ./
           bye
