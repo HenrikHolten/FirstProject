@@ -13,16 +13,17 @@ jobs:
       - name: Get latest code
         uses: actions/checkout@v4
 
-      - name: SFTP Deploy to One.com
-        uses: lorenzowain/github-action-sftp-upload@v2
-        with:
-          host: ${{ secrets.FTP_SERVER }}
-          port: 22
-          user: ${{ secrets.FTP_USERNAME }}
-          pass: ${{ secrets.FTP_PASSWORD }}
-          remote_path: /www/GitTest/
-          local_path: ./
-          exclude: |
-            .git/
-            .github/
-            README.md
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Upload via SFTP (lftp)
+        run: |
+          lftp -c "
+          open -u '${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }}' sftp://${{ secrets.FTP_SERVER }}:22
+          mirror -R --reverse --delete --verbose \
+            --exclude-glob .git* \
+            --exclude-glob .github* \
+            --exclude README.md \
+            ./ /www/GitTest/
+          bye
+          "
