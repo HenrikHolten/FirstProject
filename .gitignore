@@ -1,0 +1,5 @@
+# Database-oplysninger
+config.php
+
+# Node-afhængigheder
+node_modules/

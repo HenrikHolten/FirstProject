@@ -1,8 +1,6 @@
 <?php
-$host = 'localhost';
-$user = 'c7l4mz4rc_himandher_dk';
-$pass = 'Vector01';
-$db   = 'c7l4mz4rc_himandher_dk';
+// Database forbindelsesdetaljer
+require __DIR__ . '/config.php';
 
 $con = mysqli_connect($host, $user, $pass, $db);
 

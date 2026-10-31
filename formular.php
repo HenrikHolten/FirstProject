@@ -1,9 +1,6 @@
 <?php
 // Database forbindelsesdetaljer
-$host = 'localhost';
-$user = 'c7l4mz4rc_himandher_dk';
-$pass = 'Vector01'; 
-$db   = 'c7l4mz4rc_himandher_dk';
+require __DIR__ . '/config.php';
 
 $meddelelse = "";
 

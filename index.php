@@ -1,15 +1,20 @@
 <?php
 // Database forbindelsesdetaljer
-$host = 'localhost';
-$user = 'c7l4mz4rc_himandher_dk';
-$pass = 'Vector01'; // Skift til dit rigtige password
-$db   = 'c7l4mz4rc_himandher_dk';
+require __DIR__ . '/config.php';
 
 $beskeder = [];
+$antal_beskeder = 0;
 
 // Opret forbindelse og hent de sidste 10 beskeder
 $con = mysqli_connect($host, $user, $pass, $db);
 if ($con) {
+    // Tæl det samlede antal registrerede beskeder
+    $count_result = mysqli_query($con, "SELECT COUNT(*) AS antal FROM besked_tabel");
+    if ($count_result) {
+        $antal_beskeder = (int) mysqli_fetch_assoc($count_result)['antal'];
+    }
+
+
     // Hent op til 10 beskeder sorteret efter nyeste først
     $result = mysqli_query($con, "SELECT navn, besked, oprettet_tid FROM besked_tabel ORDER BY id DESC LIMIT 10");
     if ($result) {
@@ -35,6 +40,7 @@ if ($con) {
         .besked-card h4 { margin: 0 0 5px 0; color: #0078D7; }
         .besked-card p { margin: 0; }
         .tid { font-size: 0.85em; color: #666; margin-top: 5px; display: block; }
+        .antal { font-size: 1.1em; color: #0078D7; }
     </style>
 </head>
 <body>
@@ -45,6 +51,8 @@ if ($con) {
 
         <!-- Link til formularen -->
         <a href="formular.php" class="btn">Gå til formular for at skrive en besked</a>
+
+        <p class="antal">Antal registrerede beskeder: <strong><?php echo $antal_beskeder; ?></strong></p>
 
         <h2>Sidste 10 beskeder</h2>
 
