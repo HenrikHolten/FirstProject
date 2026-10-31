@@ -14,14 +14,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: SFTP Deploy to One.com
-        uses: Burnett01/rsync-deployments-action@v7.0.1
+        uses: lorenzowain/github-action-sftp-upload@v2
         with:
-          remhost: ${{ secrets.FTP_SERVER }}
-          remport: 22
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          target_path: /www/GitTest/
-          source_path: ./
+          host: ${{ secrets.FTP_SERVER }}
+          port: 22
+          user: ${{ secrets.FTP_USERNAME }}
+          pass: ${{ secrets.FTP_PASSWORD }}
+          remote_path: /www/GitTest/
+          local_path: ./
           exclude: |
             .git/
             .github/
