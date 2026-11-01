@@ -39,6 +39,7 @@ jobs:
             --exclude package*.json \
             --exclude app.test.js \
             --exclude README.md \
+            --exclude '^config\.php$' \
             ./ ./
           bye
           "
