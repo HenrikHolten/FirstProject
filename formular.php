@@ -16,14 +16,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt = mysqli_prepare($con, "INSERT INTO besked_tabel (navn, besked) VALUES (?, ?)");
             mysqli_stmt_bind_param($stmt, "ss", $navn, $besked);
             
-            if (mysqli_stmt_execute($stmt)) {
-                $meddelelse = "Tak! Din besked blev gemt i databasen.";
-            } else {
+            $gemt = mysqli_stmt_execute($stmt);
+            if (!$gemt) {
                 $meddelelse = "Fejl ved lagring: " . mysqli_error($con);
             }
-            
+
             mysqli_stmt_close($stmt);
             mysqli_close($con);
+
+            // Send brugeren tilbage til forsiden når beskeden er gemt
+            if ($gemt) {
+                header("Location: index.php?gemt=1");
+                exit;
+            }
         } else {
             $meddelelse = "Forbindelsesfejl til database.";
         }

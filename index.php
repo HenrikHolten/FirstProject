@@ -41,6 +41,7 @@ if ($con) {
         .besked-card p { margin: 0; }
         .tid { font-size: 0.85em; color: #666; margin-top: 5px; display: block; }
         .antal { font-size: 1.1em; color: #0078D7; }
+        .gemt { font-weight: bold; color: green; }
     </style>
 </head>
 <body>
@@ -51,6 +52,10 @@ if ($con) {
 
         <!-- Link til formularen -->
         <a href="formular.php" class="btn">Gå til formular for at skrive en besked</a>
+
+        <?php if (isset($_GET['gemt'])): ?>
+            <p class="gemt">Tak! Din besked blev gemt i databasen.</p>
+        <?php endif; ?>
 
         <p class="antal">Antal registrerede beskeder: <strong><?php echo $antal_beskeder; ?></strong></p>
 
