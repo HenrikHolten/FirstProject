@@ -2,9 +2,8 @@ name: Deploy to One.com med Test
 
 on:
   push:
-    branches:
-      - master
-paths-ignore:
+    branches: [master]
+    paths-ignore:
       - 'docs/**'
 jobs:
   test-and-deploy:
